@@ -13,7 +13,7 @@ public class Elevator {
 			
 			// Begin writing your code here:
 			
-			
+			//test
 			System.out.println("The elevator moved to floor " + destination);
 			currentLocation = destination;
 		}
