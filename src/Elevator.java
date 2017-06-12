@@ -23,23 +23,21 @@ public class Elevator {
 			} 
 			
 			floorMove = destination - currentLocation;
-			System.out.println("The elevator is moving to Floor " + destination);
+			System.out.println("The elevator is moving from Floor " + currentLocation + " to Floor " + destination);
 			
 			while( floorMove != 0 ) {
-				
 				if (floorMove > 0  ) {
 					floorMove = floorMove - 1;
 					currentLocation = currentLocation +1;
-					System.out.println("The elevator has moved to Floor " + currentLocation);		
+					System.out.println("You have moved to Floor " + currentLocation);		
 				} else if (floorMove < 0  ) {
 					floorMove = floorMove + 1;
 					currentLocation = currentLocation - 1;
-					System.out.println("The elevator has moved to Floor " + currentLocation);
-				} else {
-					System.out.println("The elevator has arrived at the destination, Floor " + currentLocation);
-							}
-			}		
+					System.out.println("You have moved to Floor " + currentLocation);
+				} 
+									
+			}
+			System.out.println("The elevator has arrived at the destination, Floor " + currentLocation);
 		}
-	}
-
+	}	   
 }
