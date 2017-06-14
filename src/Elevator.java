@@ -16,6 +16,7 @@ public class Elevator {
 			catch( Exception e ) {
 				System.out.println("Invalid floor number.  Enter a number.");
 				System.out.println("The elevator remains on floor " + currentLocation);
+				
 			}
 			// Begin writing your code here:
 
