@@ -6,22 +6,25 @@ public class VendingMachine {
 		int state = 0;
 		double currentMoney = 0;
 		double itemCost = 2;
+		double moneyNeeded = 0;
 		
 		// You can modify these values if you wish
-		int item1 = 5;
-		int item2 = 3;
-		int item3 = 0;
+		int numItem1 = 5;
+		int numItem2 = 3;
+		int numItem3 = 0;
 		
-		
+
 		while(true){
 			switch(state){
 			case 0: // waiting state;
 				Scanner moneyInput = new Scanner(System.in);
-				//string moneyString = 
-				System.out.println("Input Cash. You need $" + String.format("%.2f", (itemCost - currentMoney)) + " more.");
+			
+				moneyNeeded = itemCost - currentMoney;
+				
+				System.out.println("Input Cash. All Items cost $2.  You need $" + String.format("%.2f", moneyNeeded) + " more.");
 				String input = moneyInput.next();
 				
-				if(input == "Admin")
+				if(input.equals("Admin"))
 					state = 3;
 				else{
 					try{
