@@ -11,7 +11,8 @@ public class VendingMachine {
 		int item1 = 5;
 		int item2 = 3;
 		int item3 = 0;
-		
+		int stock[] = {5, 3, 0};
+		int itemSelection=-1;	// not valid
 		
 		while(true){
 			switch(state){
@@ -35,20 +36,31 @@ public class VendingMachine {
 					state = 1;
 				break;
 			case 1: //item selection state
-				int itemSelection;
+//				int itemSelection;
 				Scanner itemInput = new Scanner(System.in);
 				System.out.println("Choose an item");
 				itemSelection = itemInput.nextInt();
-				
+				// check inventory 
+				System.out.println("You requested " + itemSelection); 
 				state = 2;
 							
 				break;
 			case 2: //item check state (you can have a separate one for each item if you want)
+				if( stock[itemSelection-1] > 0 ) {
+					System.out.println("Here is your item " + itemSelection);
+					--stock[itemSelection-1];
+					currentMoney -= itemCost;
+					state = 0;
+				} else {
+					System.out.println("Sorry we do not have " + itemSelection);
+					state = 0;
+				}
+				break;
 				
 			case 3: // Admin state
-				
+				System.out.println("Hello Admin" + ". Nothing to do");
+				break;
 			}
 		}
-		
 	}
 }
