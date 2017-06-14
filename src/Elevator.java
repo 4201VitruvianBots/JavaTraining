@@ -8,6 +8,8 @@ public class Elevator {
 		double Button = 0;
 		
 		Scanner input = new Scanner(System.in);
+	
+		
 		
 		while(true){ // This is so you can input multiple times without restarting the program
 			
@@ -15,7 +17,14 @@ public class Elevator {
 			
 			
 			Button = input.nextDouble(); // reads the input and set it as the destination
-			if (Button == 1 || Button == 2 || Button == 3 || Button == 4 || Button == 5 || Button == 6 || Button == 7 || Button == 8 || Button == 9 || Button == 10){
+			
+			
+			if (Button == currentLocation){
+			System.out.println("you are already there.")	;
+			}
+			
+			
+			else if (Button == 1 || Button == 2 || Button == 3 || Button == 4 || Button == 5 || Button == 6 || Button == 7 || Button == 8 || Button == 9 || Button == 10){
 				
 			switch ((int)Button){
 			case 1:
@@ -85,7 +94,10 @@ public class Elevator {
 			else {
 				System.out.println("That floor does not exist");
 				}
-		}
 		
-			}
+		
 		}
+}
+}
+
+
