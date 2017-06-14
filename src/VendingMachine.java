@@ -84,7 +84,7 @@ public class VendingMachine {
 					
 							break;
 						default:
-							System.out.println("Items dispensed, enjoy your Root Beers!");
+							System.out.println("Item(s) dispensed, enjoy your Root Beer(s)!");
 							currentMoney=currentMoney-totalCost;
 							state=0;
 							System.out.println("$" + currentMoney + " returned");
@@ -129,7 +129,7 @@ public class VendingMachine {
 							
 						
 						default:
-								System.out.println("Items dispensed, enjoy your Cokes!");
+								System.out.println("Item(s) dispensed, enjoy your Coke(s)!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + currentMoney + " returned");
@@ -173,7 +173,7 @@ public class VendingMachine {
 							
 						
 							default:
-								System.out.println("Items dispensed, enjoy your Sprites!");
+								System.out.println("Item(s) dispensed, enjoy your Sprite(s)!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + currentMoney + " returned");
