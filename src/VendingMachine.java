@@ -43,17 +43,17 @@ public class VendingMachine {
 				// check inventory 
 				System.out.println("You requested " + itemSelection); 
 				state = 2;
-							
 				break;
 			case 2: //item check state (you can have a separate one for each item if you want)
 				if( stock[itemSelection-1] > 0 ) {
 					System.out.println("Here is your item " + itemSelection);
 					--stock[itemSelection-1];
 					currentMoney -= itemCost;
+					System.out.println("Here is your change " + currentMoney);
 					state = 0;
 				} else {
 					System.out.println("Sorry we do not have " + itemSelection);
-					state = 0;
+					state = 1;
 				}
 				break;
 				
