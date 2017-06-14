@@ -13,8 +13,8 @@ public class Elevator {
 			destination = input.nextInt(); // reads the input and set it as the destination
 						
 			// Begin writing your code here:
-			
-			if (destination >5 ) {
+			// Clamp floor selection from 0 to 5 range
+			if (destination >5 ) { 
 				System.out.println("Floor seleceted too high, Floor 5 selected ");
 				destination = 5;
 			} else if (destination < 0) {
@@ -22,21 +22,22 @@ public class Elevator {
 				destination = 0;
 			} 
 			
-			floorMove = destination - currentLocation;
+			floorMove = destination - currentLocation; //calculate how many floors to move
 			System.out.println("The elevator is moving from Floor " + currentLocation + " to Floor " + destination);
 			
-			while( floorMove != 0 ) {
-				if (floorMove > 0  ) {
+			while( floorMove != 0 ) {   //Move up or down until desired floor reached
+				if (floorMove > 0  ) {  //Move up
 					floorMove = floorMove - 1;
 					currentLocation = currentLocation +1;
 					System.out.println("You have moved to Floor " + currentLocation);		
-				} else if (floorMove < 0  ) {
+				} else if (floorMove < 0  ) {  //Move down
 					floorMove = floorMove + 1;
 					currentLocation = currentLocation - 1;
 					System.out.println("You have moved to Floor " + currentLocation);
 				} 
 									
 			}
+			//Moves complete, report to console
 			System.out.println("The elevator has arrived at the destination, Floor " + currentLocation);
 		}
 	}	   
