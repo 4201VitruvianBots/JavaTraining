@@ -38,7 +38,7 @@ public class VendingMachine {
 			case 1: //item selection state
 				
 				Scanner itemInput = new Scanner(System.in);
-				System.out.println("Choose an item. Food = 1, Water = 2, and Shelter = 3.");
+				System.out.println("Input a number for candy. Skittles = 1, Gummy Bears = 2, and Twix = 3.");
 				itemSelection = itemInput.nextInt();
 				
 				state = 2;
@@ -47,21 +47,46 @@ public class VendingMachine {
 			case 2: 
 				
 				if (itemSelection == 1)
-				System.out.println("There are currently " + item1 + " units left.");
-			
-				else if (itemSelection == 2)
-				System.out.println("There are currently " + item2 + " units left.");
+				System.out.println("Right now there are " + item1 + " packets of Skittles.");
 				
-				else if (itemSelection == 3)
-					System.out.println("There are currently " + item3 + " units left.");
-				else {
-					System.out.println("Item doesn't exist"); 
-				state = 1;}
+				System.out.println("With your purchase, there are now " + ((item1-=1)) + " packets left.");
+			
+				state = 4;
+				
+				break; 
+				
+			case 3: 
+				
+				if (itemSelection == 2)
+					System.out.println("Right now there are " + item2 + " packets of Gummy Bears.");
+					
+				item2-=1;
+					
+					System.out.println("With your purchase, there are now " + ((item2-=1)) + " packets left.");
+					
+				state = 5;
+				
+				break;
+				
+			case 4:
+				
+				
+				if (itemSelection == 3)
+					System.out.println("There are currently " + item3 + " bars of Twix left and no more available for purchase.");
+					
+				state = 6;
+				
+				break;
+				
+			case 5:	
+				if (itemSelection >= 4) {
+					System.out.println("There isn't any candy with the following inputted number."); 
+				state = 7;}
 			
 				break;
 	
 			
-			case 3: // Admin state (select an item and what item do you want to add)
+			case 6: // Admin state (select an item and what item do you want to add)
 				
 				System.out.println("You are now in admin. Please select an item."); 
 				Scanner choiceInput = new Scanner(System.in);
@@ -71,8 +96,6 @@ public class VendingMachine {
 				if(itemSelection == 1)
 					item1 = quantityInput.nextInt();
 				System.out.println("This item now has" + item1 + "units.");
-				
-				
 				if(itemSelection == 2)
 					item2 = quantityInput.nextInt();
 				System.out.println("This item now has" + item2 + "units.");
@@ -80,7 +103,7 @@ public class VendingMachine {
 				if(itemSelection == 3)
 					item3 = quantityInput.nextInt();	
 				System.out.println("This item now has" + item3 + "units.");
-				state = 5;
+				state = 8;
 				break;
 			}
 		}
