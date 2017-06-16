@@ -12,7 +12,7 @@ public class VendingMachine {
 		int item2 = 3;
 		int item3 = 0;
 		
-		
+		//test
 		while(true){
 			switch(state){
 			case 0: // waiting state;
