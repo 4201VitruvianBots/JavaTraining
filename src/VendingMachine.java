@@ -8,9 +8,9 @@ public class VendingMachine {
 		double itemCost = 2;
 		int itemSelection = 0;
 		// You can modify these values if you wish
-		int item1 = 100;
-		int item2 = 100;
-		int item3 = 100;
+		int item1 = 50;
+		int item2 = 50;
+		int item3 = 50;
 		
 		int amountWanted1 = 0;
 		int amountWanted2 = 0;
@@ -20,33 +20,38 @@ public class VendingMachine {
 		int amountAdded3 = 0;
 		double totalCost = 0;
 		double moreMoneyNeeded = 0;
-		int resupplySelectionInt = 0;
 		while(true){
 			switch(state){
 			case 0: // waiting state;
 				Scanner moneyInput = new Scanner(System.in);
 				//string moneyString = 
 				System.out.println("Input Cash. You need $" + String.format("%.2f", (itemCost - currentMoney)) + " more.");
+				System.out.println("There are " + item1 + " Root Beers left.");
+				System.out.println("There are " + item2 + " Cokes left.");
+				System.out.println("There are " + item3 + " Sprites left.");
 				String input = moneyInput.next();
 				
 				if(input.equals("Admin"))
+					//takes you to Admin mode
 					state = 3;
 				else{
 					try{
 						if (Double.valueOf(input) > 0){
 							currentMoney += Double.valueOf(input);
+							//Adds to current money
 						}
 						else{
 							System.out.println("Please enter positive number.");
-						}
-						
-						
+							//makes it so you can only put numbers in
+						}						
 					} catch(Exception e){
 						System.out.println("Error: Invalid Input");
+						//makes it so you can only put numbers in
 					}
 				}
 				
 				if(currentMoney >= itemCost)
+					//takes you to item selection
 					state = 1;
 				break;
 			case 1: //item selection state
@@ -56,6 +61,7 @@ public class VendingMachine {
 				System.out.println("1 = Root Beer");
 				System.out.println("2 = Coke");
 				System.out.println("3 = Sprite");
+				System.out.println("0 = Eject money");
 				itemSelection = itemInput.nextInt();
 				
 				state = 2;
@@ -64,6 +70,10 @@ public class VendingMachine {
 			case 2: //item check state (you can have a separate one for each item if you want)
 				state = 0;
 				switch (itemSelection){
+				case 0:
+					System.out.println("$" + currentMoney + " returned");
+					currentMoney = 0;
+					break;
 				case 1:
 					System.out.println("How many Root Beers do you want?");
 					Scanner itemAmount1 = new Scanner(System.in);
@@ -75,6 +85,12 @@ public class VendingMachine {
 						item1=item1-amountWanted1;
 						amountWanted1=0;
 						switch (amountWanted1){
+						case 0:
+							currentMoney=currentMoney-totalCost;
+							state=0;	
+							System.out.println("$" + currentMoney + " returned");
+							currentMoney=0;
+							break;
 						case 1:
 							System.out.println("Item dispensed, enjoy your Root Beer!");
 							currentMoney=currentMoney-totalCost;
@@ -92,16 +108,16 @@ public class VendingMachine {
 							break;
 						}
 					}
-					else if (currentMoney>=itemCost){
-						System.out.println("Only " + item1 + " left!");
+					else if (item1>=amountWanted1){
+						moreMoneyNeeded = totalCost-currentMoney;
+						System.out.println("$" + moreMoneyNeeded + " more needed.");
 						state=0;
 						System.out.println("$" + currentMoney + " returned");
 						currentMoney=0;
 					}
-					else if (item1>=amountWanted1){
+					else if (currentMoney>=itemCost){
 						
-						moreMoneyNeeded = currentMoney-totalCost;
-						System.out.println(moreMoneyNeeded + " more money needed.");
+						System.out.println("Only " + item1 + " left.");
 						state=0;
 						System.out.println("$" + currentMoney + " returned");
 						currentMoney=0;
@@ -113,12 +129,18 @@ public class VendingMachine {
 					Scanner itemAmount2 = new Scanner(System.in);
 					amountWanted2 = itemAmount2.nextInt();
 					totalCost=itemCost*amountWanted2;
-					if (currentMoney>=itemCost * amountWanted2 && item1>=amountWanted2){
+					if (currentMoney>=itemCost * amountWanted2 && item2>=amountWanted2){
 				 
 					
 						item2=item2-amountWanted2;
 						amountWanted2=0;
 						switch (amountWanted2){
+						case 0:
+							currentMoney=currentMoney-totalCost;
+							state=0;	
+							System.out.println("$" + currentMoney + " returned");
+							currentMoney=0;
+							break;
 						case 1:
 							System.out.println("Item dispensed, enjoy your Coke!");
 							currentMoney=currentMoney-totalCost;
@@ -137,16 +159,16 @@ public class VendingMachine {
 							break;
 						}
 					}
-					else if (currentMoney>=itemCost){
-						System.out.println("Only " + item2 + " left!");
+					else if (item2>=amountWanted2){
+						moreMoneyNeeded = totalCost-currentMoney;
+						System.out.println("$" + moreMoneyNeeded + " more needed.");
 						state=0;
 						System.out.println("$" + currentMoney + " returned");
 						currentMoney=0;
 					}
-					else if (item2>=amountWanted2){
+					else if (currentMoney>=itemCost){
 						
-						moreMoneyNeeded = currentMoney-totalCost;
-						System.out.println(moreMoneyNeeded + " more money needed.");
+						System.out.println("Only " + item1 + " left.");
 						state=0;
 						System.out.println("$" + currentMoney + " returned");
 						currentMoney=0;
@@ -157,13 +179,19 @@ public class VendingMachine {
 					Scanner itemAmount3 = new Scanner(System.in);
 					amountWanted3 = itemAmount3.nextInt();
 					totalCost=itemCost*amountWanted3;
-					if (currentMoney>=itemCost * amountWanted3 && item1>=amountWanted3){
+					if (currentMoney>=itemCost * amountWanted3 && item3>=amountWanted3){
 					
-						item2=item2-amountWanted3;
+						item3=item3-amountWanted3;
 						amountWanted3=0;
 						
 						switch (amountWanted3){
-							case 1:
+						case 0:
+							currentMoney=currentMoney-totalCost;
+							state=0;	
+							System.out.println("$" + currentMoney + " returned");
+							currentMoney=0;
+							break;
+						case 1:
 							System.out.println("Item dispensed, enjoy your Sprites!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
@@ -172,7 +200,7 @@ public class VendingMachine {
 							break;
 							
 						
-							default:
+						default:
 								System.out.println("Item(s) dispensed, enjoy your Sprite(s)!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
@@ -181,20 +209,21 @@ public class VendingMachine {
 							break;
 							}
 					}
-					else if (currentMoney>=itemCost){
-						System.out.println("Only " + item2 + " left!");
-					state=0;
-					System.out.println("$" + currentMoney + " returned");
-					currentMoney=0;
-					}
-					else if (item2>=amountWanted3){
-						
-						moreMoneyNeeded = currentMoney-totalCost;
-						System.out.println(moreMoneyNeeded + " more money needed.");
+					else if (item3>=amountWanted3){
+						moreMoneyNeeded = totalCost-currentMoney;
+						System.out.println("$" + moreMoneyNeeded + " more needed.");
 						state=0;
 						System.out.println("$" + currentMoney + " returned");
 						currentMoney=0;
-						}
+					}
+					else if (currentMoney>=itemCost){
+						
+						
+						System.out.println("Only " + item1 + " left.");
+						state=0;
+						System.out.println("$" + currentMoney + " returned");
+						currentMoney=0;
+					}
 					
 					break;
 				default:
@@ -203,7 +232,7 @@ public class VendingMachine {
 					currentMoney=0;
 					state = 0;
 					break;
-				}
+			}
 				state = 0;
 				break;
 			case 3: // Admin state
@@ -230,8 +259,6 @@ public class VendingMachine {
 				System.out.println("There are now " + item3 + " Sprites.");
 				System.out.println("Admin mode deactivated.");
 				state = 0;
-				
-				
 				break;
 			}
 		}		
