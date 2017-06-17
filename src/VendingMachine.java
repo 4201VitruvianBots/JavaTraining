@@ -130,7 +130,7 @@ public class VendingMachine {
 						System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 						currentMoney=0;
 					}
-					else if (currentMoney>=totalCost){
+					else {						
 						//makes sure there is enough of the product
 						System.out.println("Only " + item1 + " left.");
 						System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
@@ -183,7 +183,7 @@ public class VendingMachine {
 						System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 						currentMoney=0;
 					}
-					else if (currentMoney>=totalCost){
+					else {
 						//makes sure there is enough of the product
 						System.out.println("Only " + item2 + " left.");
 						System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
@@ -236,7 +236,7 @@ public class VendingMachine {
 						System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 						currentMoney=0;
 					}
-					else if (currentMoney>=totalCost){
+					else {
 						//makes sure there is enough of the product
 						System.out.println("Only " + item3 + " left.");
 						System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
