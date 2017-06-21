@@ -247,8 +247,8 @@ public class VendingMachine {
 					break;
 				default:
 					System.out.println("invalid");
-					System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
-					currentMoney=0;
+					//System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
+					//currentMoney=0;
 					state = 1;
 					break;
 			}				
