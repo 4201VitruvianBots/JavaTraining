@@ -41,7 +41,7 @@ public class VendingMachine {
 					state = 3;
 				else{
 					try{
-						if (Double.valueOf(input) > 0){
+						if (Double.valueOf(input) >= 0){
 							currentMoney += Double.valueOf(input);
 							//Adds to current money
 						}
