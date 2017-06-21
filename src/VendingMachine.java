@@ -19,19 +19,28 @@ public class VendingMachine {
 			case 0: // waiting state;
 				Scanner moneyInput = new Scanner(System.in);
 				//informs user
-				System.out.println("Figit Spinners cost $" + String.format("%.2f", (itemCost1)));
+				System.out.println("Fidgit Spinners cost $" + String.format("%.2f", (itemCost1)));
 				System.out.println("Drones cost $" + String.format("%.2f", (itemCost2)));
 				System.out.println("Bouncy balls cost $" + String.format("%.2f", (itemCost3)));
 				System.out.println("Input Cash. You need at least $" + String.format("%.2f", (itemCost3 - currentMoney)) + " more.");
-				System.out.println("There are " + item1 + " Figit Spinners left.");
+				System.out.println("There are " + item1 + " Fidgit Spinners left.");
 				System.out.println("There are " + item2 + " Drones left.");
 				System.out.println("There are " + item3 + " bouncy balls left.");
 				String input = moneyInput.next();
-				
 				if(input.equals("Admin"))
 					//takes you to Admin mode
 					state = 3;
-				else{
+				else if(input.equals("Sample")){
+					//gives you things for free
+					System.out.println("Enjoy your fidgit spinner.");
+					System.out.println("Enjoy your drone.");
+					System.out.println("Enjoy your ball.");
+					item1 --;
+					item2 --;
+					item3 --;
+					state = 0;
+				}
+				else {
 					try{
 						if (Double.valueOf(input) >= 0){
 							currentMoney += Double.valueOf(input);
@@ -55,7 +64,7 @@ public class VendingMachine {
 				
 				Scanner itemInput = new Scanner(System.in);
 				System.out.println("Choose an item");
-				System.out.println("1 = Figit Spinner");
+				System.out.println("1 = Fidgit spinner");
 				System.out.println("2 = Drone");
 				System.out.println("3 = Bouncy ball");
 				System.out.println("0 = Eject money");
@@ -77,7 +86,7 @@ public class VendingMachine {
 					break;
 					//makes it so you can't ask for 0
 				case 1:
-					System.out.println("How many figit spinners do you want?");
+					System.out.println("How many fidgit spinners do you want?");
 					Scanner itemAmount1 = new Scanner(System.in);
 					try{amountWanted1 = itemAmount1.nextInt();
 					} catch(Exception e){
@@ -97,7 +106,7 @@ public class VendingMachine {
 							currentMoney=0;
 							break;
 						default:
-							System.out.println("Item"+(amountWanted1 > 1? "s" :"")+ " dispensed, enjoy your figit spinner"+(amountWanted1 > 1? "s" :"")+"!");
+							System.out.println("Item"+(amountWanted1 > 1? "s" :"")+ " dispensed, enjoy your fidgit spinner"+(amountWanted1 > 1? "s" :"")+"!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
@@ -217,8 +226,8 @@ public class VendingMachine {
 				System.out.println("Admin mode activated.");
 				switch(adminSetting){
 				case 1:				
-					System.out.println("There are " + item1 + " figit spinners.");
-					System.out.println("How many figit spinners will you add?");
+					System.out.println("There are " + item1 + " fidgit spinners.");
+					System.out.println("How many fidgit spinners will you add?");
 					Scanner Add1 = new Scanner(System.in);
 					try{amountAdded1 = Add1.nextInt();
 					}catch(Exception e){
@@ -229,8 +238,8 @@ public class VendingMachine {
 					if (amountAdded1<0) {
 						if (Math.abs(amountAdded1)<=item1){
 						item1+=amountAdded1;
-						System.out.println(amountAdded1 + " figit spinners added.");
-						System.out.println("There are now " + item1 + " figit spinners");
+						System.out.println(amountAdded1 + " fidgit spinners added.");
+						System.out.println("There are now " + item1 + " fidgit spinners");
 						}
 						else if (Math.abs(amountAdded1)>=item1){
 							System.out.println("Invalid");
@@ -240,8 +249,8 @@ public class VendingMachine {
 					}
 					else {
 						item1+=amountAdded1;
-						System.out.println(amountAdded1 + " figit spinners added.");
-						System.out.println("There are now " + item1 + " figit spinners");
+						System.out.println(amountAdded1 + " fidgit spinners added.");
+						System.out.println("There are now " + item1 + " fidgit spinners");
 					}
 												
 				case 2:
