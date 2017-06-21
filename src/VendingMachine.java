@@ -6,6 +6,7 @@ public class VendingMachine {
 		int state = 0;
 		double currentMoney = 0;
 		double itemCost = 2;
+		double money =  (itemCost - currentMoney);
 		
 		// You can modify these values if you wish
 		int item1 = 5;
@@ -18,14 +19,15 @@ public class VendingMachine {
 			case 0: // waiting state;
 				Scanner moneyInput = new Scanner(System.in);
 				//string moneyString = 
-				System.out.println("Input Cash. You need $" + String.format("%.2f", (itemCost - currentMoney)) + " more.");
+				System.out.println("Input Cash. You need $" + money + " more.");
 				String input = moneyInput.next();
 				
-				if(input.equals("Admin"))
+				if(input == "Admin")
 					state = 3;
 				else{
 					try{
-						currentMoney += Double.valueOf(input);
+						//currentMoney += double.valueOf(input);
+						currentMoney = (currentMoney + money);
 					} catch(Exception e){
 						System.out.println("Error: Invalid Input");
 					}
