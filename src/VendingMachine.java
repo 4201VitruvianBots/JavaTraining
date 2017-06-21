@@ -30,7 +30,7 @@ public class VendingMachine {
 				if(input.equals("Admin"))
 					//takes you to Admin mode
 					state = 3;
-				else if(input.equals("Sample")){
+				else if(input.equals("Sample") && item1>0 && item2>0 && item3>0){
 					//gives you things for free
 					System.out.println("Enjoy your fidget spinner.");
 					System.out.println("Enjoy your drone.");
@@ -39,6 +39,9 @@ public class VendingMachine {
 					item2 --;
 					item3 --;
 					state = 0;
+				}
+				else if(input.equals("Sample")){
+					System.out.println("More supplies needed.");
 				}
 				else {
 					try{
@@ -179,15 +182,15 @@ public class VendingMachine {
 					try{amountWanted3 = itemAmount3.nextInt();
 					} catch(Exception e){
 						System.out.println("Error: Invalid Input");
-						//makes it so you can only put numbers in						
+						//makes it so you can only put numbers in
 					}
 					totalCost=itemCost3*amountWanted3;
 					if (currentMoney>=totalCost && item3>=amountWanted3){
-						item3=item3-amountWanted3;						
+						item3=item3-amountWanted3;
 						switch (amountWanted3){
 						//changes grammar
 						case 0:
-							state=0;	
+							state=0;
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
 							break;
