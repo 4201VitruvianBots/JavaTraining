@@ -19,11 +19,11 @@ public class VendingMachine {
 			case 0: // waiting state;
 				Scanner moneyInput = new Scanner(System.in);
 				//informs user
-				System.out.println("Fidgit Spinners cost $" + String.format("%.2f", (itemCost1)));
+				System.out.println("Fidget Spinners cost $" + String.format("%.2f", (itemCost1)));
 				System.out.println("Drones cost $" + String.format("%.2f", (itemCost2)));
 				System.out.println("Bouncy balls cost $" + String.format("%.2f", (itemCost3)));
 				System.out.println("Input Cash. You need at least $" + String.format("%.2f", (itemCost3 - currentMoney)) + " more.");
-				System.out.println("There are " + item1 + " Fidgit Spinners left.");
+				System.out.println("There are " + item1 + " Fidget Spinners left.");
 				System.out.println("There are " + item2 + " Drones left.");
 				System.out.println("There are " + item3 + " bouncy balls left.");
 				String input = moneyInput.next();
@@ -32,7 +32,7 @@ public class VendingMachine {
 					state = 3;
 				else if(input.equals("Sample")){
 					//gives you things for free
-					System.out.println("Enjoy your fidgit spinner.");
+					System.out.println("Enjoy your fidget spinner.");
 					System.out.println("Enjoy your drone.");
 					System.out.println("Enjoy your ball.");
 					item1 --;
@@ -64,7 +64,7 @@ public class VendingMachine {
 				
 				Scanner itemInput = new Scanner(System.in);
 				System.out.println("Choose an item");
-				System.out.println("1 = Fidgit spinner");
+				System.out.println("1 = Fidget spinner");
 				System.out.println("2 = Drone");
 				System.out.println("3 = Bouncy ball");
 				System.out.println("0 = Eject money");
@@ -86,7 +86,7 @@ public class VendingMachine {
 					break;
 					//makes it so you can't ask for 0
 				case 1:
-					System.out.println("How many fidgit spinners do you want?");
+					System.out.println("How many fidget spinners do you want?");
 					Scanner itemAmount1 = new Scanner(System.in);
 					try{amountWanted1 = itemAmount1.nextInt();
 					} catch(Exception e){
@@ -106,7 +106,7 @@ public class VendingMachine {
 							currentMoney=0;
 							break;
 						default:
-							System.out.println("Item"+(amountWanted1 > 1? "s" :"")+ " dispensed, enjoy your fidgit spinner"+(amountWanted1 > 1? "s" :"")+"!");
+							System.out.println("Item"+(amountWanted1 > 1? "s" :"")+ " dispensed, enjoy your fidget spinner"+(amountWanted1 > 1? "s" :"")+"!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
@@ -140,7 +140,7 @@ public class VendingMachine {
 					totalCost=itemCost2*amountWanted2;
 					if (currentMoney>=totalCost && item2>=amountWanted2){			
 						item2=item2-amountWanted2;
-						amountWanted2=0;
+						
 						switch (amountWanted2){
 						//changes grammar
 						case 0:
@@ -156,6 +156,7 @@ public class VendingMachine {
 							currentMoney=0;
 							break;
 						}
+					amountWanted2=0;
 					}
 					else if (item2>=amountWanted2){
 						//makes sure you have enough money
@@ -182,8 +183,7 @@ public class VendingMachine {
 					}
 					totalCost=itemCost3*amountWanted3;
 					if (currentMoney>=totalCost && item3>=amountWanted3){
-						item3=item3-amountWanted3;
-						amountWanted3=0;
+						item3=item3-amountWanted3;						
 						switch (amountWanted3){
 						//changes grammar
 						case 0:
@@ -198,7 +198,8 @@ public class VendingMachine {
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
 							break;						
-							}
+						}
+						amountWanted3=0;
 					}
 					else if (item3>=amountWanted3){
 						//makes sure you have enough money
@@ -226,8 +227,8 @@ public class VendingMachine {
 				System.out.println("Admin mode activated.");
 				switch(adminSetting){
 				case 1:				
-					System.out.println("There are " + item1 + " fidgit spinners.");
-					System.out.println("How many fidgit spinners will you add?");
+					System.out.println("There are " + item1 + " fidget spinners.");
+					System.out.println("How many fidget spinners will you add?");
 					Scanner Add1 = new Scanner(System.in);
 					try{amountAdded1 = Add1.nextInt();
 					}catch(Exception e){
@@ -238,8 +239,8 @@ public class VendingMachine {
 					if (amountAdded1<0) {
 						if (Math.abs(amountAdded1)<=item1){
 						item1+=amountAdded1;
-						System.out.println(amountAdded1 + " fidgit spinners added.");
-						System.out.println("There are now " + item1 + " fidgit spinners");
+						System.out.println(amountAdded1 + " fidget spinners added.");
+						System.out.println("There are now " + item1 + " fidget spinners");
 						}
 						else if (Math.abs(amountAdded1)>=item1){
 							System.out.println("Invalid");
@@ -249,8 +250,8 @@ public class VendingMachine {
 					}
 					else {
 						item1+=amountAdded1;
-						System.out.println(amountAdded1 + " fidgit spinners added.");
-						System.out.println("There are now " + item1 + " fidgit spinners");
+						System.out.println(amountAdded1 + " fidget spinners added.");
+						System.out.println("There are now " + item1 + " fidget spinners");
 					}
 												
 				case 2:
