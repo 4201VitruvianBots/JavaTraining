@@ -247,8 +247,6 @@ public class VendingMachine {
 					break;
 				default:
 					System.out.println("invalid");
-					//System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
-					//currentMoney=0;
 					state = 1;
 					break;
 			}				
@@ -257,31 +255,59 @@ public class VendingMachine {
 				System.out.println("Admin mode activated.");
 				switch(adminSetting){
 				case 1:				
-				System.out.println("There are " + item1 + " figit spinners.");
-				System.out.println("How many figit spinners will you add?");
-				Scanner Add1 = new Scanner(System.in);
-				try{amountAdded1 = Add1.nextInt();
-				}catch(Exception e){
-					System.out.println("Invalid");
-					adminSetting = 1;
-					break;
-				}
-				item1+=amountAdded1;
-				System.out.println(amountAdded1 + " figit spinners added.");
-				System.out.println("There are now " + item1 + " figit spinners");
+					System.out.println("There are " + item1 + " figit spinners.");
+					System.out.println("How many figit spinners will you add?");
+					Scanner Add1 = new Scanner(System.in);
+					try{amountAdded1 = Add1.nextInt();
+					}catch(Exception e){
+						System.out.println("Invalid");
+						adminSetting = 1;
+						break;
+					}
+					if (amountAdded1<0) {
+						if (Math.abs(amountAdded1)<=item1){
+						item1+=amountAdded1;
+						System.out.println(amountAdded1 + " figit spinners added.");
+						System.out.println("There are now " + item1 + " figit spinners");
+						}
+						else if (Math.abs(amountAdded1)>=item1){
+							System.out.println("Invalid");
+							adminSetting = 1;
+						}
+					}
+					else {
+						item1+=amountAdded1;
+						System.out.println(amountAdded1 + " figit spinners added.");
+						System.out.println("There are now " + item1 + " figit spinners");
+					}
+												
 				case 2:
-				System.out.println("There are " + item2 + " drones.");
-				System.out.println("How many drones will you add?");
-				Scanner Add2 = new Scanner(System.in);
-				try{amountAdded2 = Add2.nextInt();
-				}catch(Exception e){
-					System.out.println("Invalid");
-					adminSetting = 2;
-					break;
-				}
-				item2+=amountAdded2;
-				System.out.println(amountAdded2 + " drones added.");
-				System.out.println("There are now " + item2 + " drones.");
+					System.out.println("There are " + item2 + " drones.");
+					System.out.println("How many drones will you add?");
+					Scanner Add2 = new Scanner(System.in);
+									
+					try{amountAdded2 = Add2.nextInt();
+					}catch(Exception e){
+						System.out.println("Invalid");
+						adminSetting = 2;
+						break;
+					}
+					if (amountAdded2<0){
+						if (Math.abs(amountAdded2)<=item2){
+					item2+=amountAdded2;
+					System.out.println(amountAdded2 + " drones added.");
+					System.out.println("There are now " + item2 + " drones.");
+						}
+						else if (Math.abs(amountAdded2)>=item2){
+							System.out.println("Invalid");
+							adminSetting = 2;
+						}
+					}
+					else {
+						item2+=amountAdded2;
+						System.out.println(amountAdded2 + " drones added.");
+						System.out.println("There are now " + item2 + " drones.");
+					}
 				case 3:
 				System.out.println("There are " + item3 + " bouncy balls.");
 				System.out.println("How many bouncy balls will you add?");
@@ -292,12 +318,28 @@ public class VendingMachine {
 					adminSetting = 3;
 					break;
 				}
-				item3+=amountAdded3;
-				System.out.println(amountAdded3 + " bouncy balls added.");
-				System.out.println("There are now " + item3 + " bouncy balls.");
-				System.out.println("Admin mode deactivated.");
-				state = 0;
-				adminSetting = 0;
+				if (amountAdded1<0){
+					if (Math.abs(amountAdded3)<=item3){
+						item3+=amountAdded3;
+						System.out.println(amountAdded3 + " bouncy balls added.");
+						System.out.println("There are now " + item3 + " bouncy balls.");
+						System.out.println("Admin mode deactivated.");
+						state = 0;
+						adminSetting = 0;
+					}
+					else if (Math.abs(amountAdded2)>=item2){
+						System.out.println("Invalid");
+						adminSetting = 3;
+					}
+				}
+				else {
+					item3+=amountAdded3;
+					System.out.println(amountAdded3 + " bouncy balls added.");
+					System.out.println("There are now " + item3 + " bouncy balls.");
+					System.out.println("Admin mode deactivated.");
+					state = 0;
+					adminSetting = 0;
+				}
 				break;
 				}
 			}
