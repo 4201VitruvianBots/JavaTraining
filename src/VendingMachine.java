@@ -29,7 +29,10 @@ public class VendingMachine {
 					state = 3;
 				else {
 					try{
-						currentMoney += Double.valueOf(input);
+						if(Double.valueOf(input) < 0)
+							System.out.println("Error: Cannot input negative cash.");
+						else
+							currentMoney += Double.valueOf(input);
 					} catch(Exception e){
 						System.out.println("Error: Invalid Input");
 					}
@@ -58,8 +61,7 @@ public class VendingMachine {
 					} catch(Exception e){
 						System.out.println("Error: Invalid input");
 					}
-				}
-							
+				}	
 				break;
 			case 2: //item check state (you can have a separate one for each item if you want)
 				boolean valid = false;
@@ -95,30 +97,53 @@ public class VendingMachine {
 				break;
 			case 3: // Return change state
 				double change = currentMoney;
-				currentMoney = 0;
-				System.out.println("Returning $" + String.format("%.2f", (change)) + " in change.");
-				state = 0;
+				
+				
+				if(change == 0)
+					System.out.println("No change returned.");
+				else{
+					currentMoney = 0;
+					System.out.println("Returning $" + String.format("%.2f", (change)) + " in change.");
+					state = 0;
+				}
 				break;
 			case 4: // Admin state
-				System.out.println("Admin Mode.\nCurrent Stock:\nItem1: " + item1 +"\nItem2: "+ item2 + "\nItem3: "+ item3 + "\nSet the item and its quantity");
-				Scanner adminInput = new Scanner(System.in);
-				try{
-					int adminSelect = adminInput.nextInt();
-					int adminQuantity = adminInput.nextInt();
-					switch(adminSelect){
-					case 1:
-						item1 = adminQuantity;
-						break;
-					case 2:
-						item2 = adminQuantity;
-						break;
-					case 3:
-						item3 = adminQuantity;
-						break;
+				System.out.println("Admin Mode.\nCurrent Stock:\nItem1: " + item1 +"\nItem2: "+ item2 + "\nItem3: "+ item3 + "\nSet the item and its quantity. (Write two numbers seperated by a space).");
+				Scanner adminScanner = new Scanner(System.in);
+				String adminInput = adminScanner.next();
+
+				if(adminInput.equals("x")){
+					System.out.println("Exiting Admin Mode");
+					state = 0;
+				} else{
+					try{
+						int adminSelect = Integer.valueOf(adminInput);
+						int adminQuantity = adminScanner.nextInt();
+						
+						if(adminSelect < 0 || adminSelect > 3)
+							System.out.println("Error: Invalid Item Selection");
+						else if(adminQuantity < 0)
+							System.out.println("Error: Cannot set quantity to a value less than 0.");
+						else {
+							switch(adminSelect){
+							case 1:
+								item1 = adminQuantity;
+								break;
+							case 2:
+								item2 = adminQuantity;
+								break;
+							case 3:
+								item3 = adminQuantity;
+								break;
+							default:
+								System.out.println("Error: Invalid Input");
+								break;
+							}
+							System.out.println("Set Item " + adminSelect + " to " + adminQuantity);
+						}
+					} catch(Exception e){
+						System.out.println("Error: Invalid Input");
 					}
-					System.out.println("Set Item " + adminSelect + " to " + adminQuantity);
-				} catch(Exception e){
-					System.out.println("Error: Invalid Input");
 				}
 				break;
 			}
