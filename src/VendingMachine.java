@@ -8,25 +8,36 @@ public class VendingMachine {
 		double itemCost = 2;
 		
 		// You can modify these values if you wish
-		int item1 = 5;
-		int item2 = 3;
-		int item3 = 0;
 		int stock[] = {5, 3, 0};
+		int maxItemIndex = stock.length;
 		int itemSelection=-1;	// not valid
 		
 		while(true){
+			String input="0";
+//			String moneyString = "Input Cash. You need $" 
+//					+ String.format("%.2f", (itemCost - currentMoney)) + " more.";
 			switch(state){
 			case 0: // waiting state;
-				Scanner moneyInput = new Scanner(System.in);
-				//string moneyString = 
-				System.out.println("Input Cash. You need $" + String.format("%.2f", (itemCost - currentMoney)) + " more.");
-				String input = moneyInput.next();
+				showCurrentInventory(stock);
+
+				if(currentMoney >= itemCost) { 
+					System.out.println("Sufficient funds: " + currentMoney);
+					input = String.valueOf(0);
+				} else 
+				{
+					System.out.println("Input Cash. You need $" 
+							+ String.format("%.2f", (itemCost - currentMoney)) + " more.");
+					Scanner moneyInput = new Scanner(System.in);
+					input = moneyInput.next();
+					// input = getInput 
+				}
 				
-				if(input == "Admin")
+				if(input.equals("Admin"))
 					state = 3;
 				else{
 					try{
 						currentMoney += Double.valueOf(input);
+//						currentMoney = getNewBalance(input);
 					} catch(Exception e){
 						System.out.println("Error: Invalid Input");
 					}
@@ -36,10 +47,14 @@ public class VendingMachine {
 					state = 1;
 				break;
 			case 1: //item selection state
-//				int itemSelection;
 				Scanner itemInput = new Scanner(System.in);
 				System.out.println("Choose an item");
 				itemSelection = itemInput.nextInt();
+				if( itemSelection < 1 || itemSelection > maxItemIndex ) {
+					System.out.println("Invalid; enter item number between 1 and " + maxItemIndex);
+					state = 1; 
+					break;
+				}
 				// check inventory 
 				System.out.println("You requested " + itemSelection); 
 				state = 2;
@@ -62,5 +77,35 @@ public class VendingMachine {
 				break;
 			}
 		}
+	}
+	
+	private static double getNewBalance(String current) {
+		return getRealNum() + Double.valueOf(current);
+	}
+	
+	private static double getNewBalance(double current) {
+		return getRealNum() + current;
+	}
+	
+	private static double getRealNum() {
+		double n = 0;
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.next();
+		try{
+			n = Double.valueOf(input);
+		} catch(Exception e){
+			System.out.println("Error: Invalid Input. Enter a number.");
+		}
+		scanner.close();
+		return n;
+	}
+	
+	private static void showCurrentInventory(int[] stock) {
+//		switch(stock.length) {
+//		case 1:
+			System.out.println(
+					"Available M&M=" + stock[0] 
+							+ "; Gum=" + stock[1] 
+							+ "; Nut=" + stock[2]);
 	}
 }
