@@ -21,7 +21,7 @@ public class VendingMachine {
 				System.out.println("Input Cash. You need $" + String.format("%.2f", (itemCost - currentMoney)) + " more.");
 				String input = moneyInput.next();
 				
-				if(input == "Admin")
+				if(input.equals("Admin"))
 					state = 3;
 				else{
 					try{
