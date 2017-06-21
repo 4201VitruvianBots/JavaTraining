@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class VendingMachine {
-//	private static final Object  = null;
+	private static final Object  = null;
 
 	public static void main(String[] args) {
 		// Do not modify these values
