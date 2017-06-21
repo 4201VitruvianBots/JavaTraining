@@ -3,15 +3,15 @@ import java.util.Scanner;
 public class VendingMachine {
 	public static void main(String[] args) {
 		
-		int state = 0;
-		double currentMoney = 0;
-		double itemCost1 = 10, itemCost2 = 100, itemCost3 = 0.50;
-		int itemSelection = 0;
-		int item1 = 100, item2 = 25, item3 = 1000;
-		int amountWanted1 = 0, amountWanted2 = 0, amountWanted3 = 0;
-		int amountAdded1 = 0, amountAdded2 = 0, amountAdded3 = 0;
-		double totalCost = 0;
-		int adminSetting = 1;
+		int state = 0; //where you are in the code
+		double currentMoney = 0; //money in machine
+		double itemCost1 = 10, itemCost2 = 100, itemCost3 = 0.50; //sets price
+		int itemSelection = 0; //selects what you buy
+		int item1 = 100, item2 = 25, item3 = 1000;  //sets amount
+		int amountWanted1 = 0, amountWanted2 = 0, amountWanted3 = 0; //makes it so you can get more than 1
+		int amountAdded1 = 0, amountAdded2 = 0, amountAdded3 = 0; //lets you add in Admin mode
+		double totalCost = 0; //total cost of purchase
+		int adminSetting = 1; //sets location in Admin mode
 		
 		while(true){
 			switch(state){
@@ -235,6 +235,7 @@ public class VendingMachine {
 						else if (Math.abs(amountAdded1)>=item1){
 							System.out.println("Invalid");
 							adminSetting = 1;
+							break;
 						}
 					}
 					else {
@@ -263,6 +264,7 @@ public class VendingMachine {
 						else if (Math.abs(amountAdded2)>=item2){
 							System.out.println("Invalid");
 							adminSetting = 2;
+							break;
 						}
 					}
 					else {
@@ -280,18 +282,19 @@ public class VendingMachine {
 					adminSetting = 3;
 					break;
 				}
-				if (amountAdded1<0){
+				if (amountAdded3<0){
 					if (Math.abs(amountAdded3)<=item3){
 						item3+=amountAdded3;
 						System.out.println(amountAdded3 + " bouncy balls added.");
 						System.out.println("There are now " + item3 + " bouncy balls.");
 						System.out.println("Admin mode deactivated.");
 						state = 0;
-						adminSetting = 0;
+						adminSetting = 1;
 					}
 					else if (Math.abs(amountAdded2)>=item2){
 						System.out.println("Invalid");
 						adminSetting = 3;
+						break;
 					}
 				}
 				else {
