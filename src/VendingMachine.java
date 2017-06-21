@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class VendingMachine {
-	private static final Object  = null;
+
 
 	public static void main(String[] args) {
 		// Do not modify these values
@@ -10,12 +10,12 @@ public class VendingMachine {
 		double itemCost = 2;
 		
 		// You can modify these values if you wish
-		int Chocolate = 4;
-		int Poptarts = 2;
-		int Chips = 0;
-		int Chocolatewanted = 1;
-		int Poptartswanted = 1;
-		int Chipswanted = 1;
+		int chocolate = 4;
+		int poptarts = 2;
+		int chips = 0;
+		int chocolateWanted = 1;
+		int poptartsWanted = 1;
+		int chipsWanted = 1;
 		int cost = 0;
 		int totalMoney = 0;
 		int chocoInventory = 0;
@@ -26,6 +26,7 @@ public class VendingMachine {
 		int amountAdded3 = 0;
 		int itemSelection = 0;
 		
+		
 		while(true){
 			switch(state){
 			case 0: // waiting state; put string for admin mode and the money they need for the item
@@ -35,12 +36,10 @@ public class VendingMachine {
 				String input = moneyInput.next();
 				
 	
-				System.out.println("Chocolate");
-				System.out.println("Poptarts");
-				System.out.println("Chips");
+				
 				
 				if(input.equals("Admin"))
-					state = 3;
+					state = 4;
 				else{
 						try{
 							currentMoney += Double.valueOf(input);
@@ -52,66 +51,81 @@ public class VendingMachine {
 				if(currentMoney >= itemCost)
 					state = 1;
 				break;
-			case 1: //item selection state and this where they select the item
-				
-				Scanner itemInput = new Scanner(System.in);
-				System.out.println("Choose an item");
-				
-				
-				
-				System.out.println("1 = Chocolate");
-				System.out.println("2 = Poptarts");
-				System.out.println("3 = Chips");
-				
-				state = 2;
-				itemSelection = itemInput.nextInt();
-				
-				
-							
+				case 1: //item selection state and this where they select the item
+					
+					Scanner itemInput = new Scanner(System.in);
+					System.out.println("Choose an item");
+					
+					
+					
+					System.out.println("1 = Chocolate");
+					System.out.println("2 = Poptarts");
+					System.out.println("3 = Chips");
+					
+					state = 2;
+					itemSelection = itemInput.nextInt();
 					break;
-			case 2: //item check state (you can have a separate one for each item if you want)
+					
+								
+						
+				case 2: //item check state (you can have a separate one for each item if you want)
 			
-				switch(itemSelection){
-				case 1: System.out.println("Your chocolate has been dropped");
-					currentMoney = currentMoney - cost;
-					state = 0; //this goes back to the waiting stage
-					System.out.println("$" + currentMoney + "returned");
-					currentMoney=0;
-					
-					System.out.println("Your Poptart has been dropped");
-					currentMoney = currentMoney - cost;
-					state = 0; //this goes back to the waiting stage
-					System.out.println("$" + currentMoney + "returned");
-					currentMoney=0;
-					
-					System.out.println("Your Chips has been dropped");
-					currentMoney = currentMoney - cost;
-					state = 0; //this goes back to the waiting stage
-					System.out.println("$" + currentMoney + "returned");
-					currentMoney=0;
-					
+					switch(itemSelection){
+						case 1: System.out.println("Your chocolate has been dropped");
+							currentMoney = currentMoney - cost;
+							state = 0; //this goes back to the waiting stage
+							currentMoney=0;
+							break;
+							
+						case 2: System.out.println("Your poptart has been dropped");
+							currentMoney = currentMoney - cost;
+							state = 0; //this goes back to the waiting stage
+							currentMoney=0;
+							break;
+							
+						case 3:System.out.println("Your chips has been dropped");
+							currentMoney = currentMoney - cost;
+							state = 0; //this goes back to the waiting stage
+							currentMoney=0;
+							 break;
+					}
 					break;
-			case 3: // Admin state
-				
-				System.out.println("You're now in Admin state!");
-				
-				System.out.println("How many chocolates do you want to add to the inventory?");
-				chocoInventory = Chocolate + amountAdded;
-				System.out.println(chocoInventory + "Chocolate");
-				System.out.println(Chocolate + "has been added to the inventory!");
-				System.out.println("There a total of" + Chocolate + "chocolates" );
-
-				System.out.println("How many poptarts do you want to add to the inventory?");
-				popInventory = Poptarts + amountAdded2;
-				System.out.println(chocoInventory + "Poptarts");
-				System.out.println(Chocolate + "has been added to the inventory!");
-				System.out.println("There a total of" + Poptarts + "poptarts" );
-				
-				System.out.println("How many chips do you want to add to the inventory?");
-				chipInventory = Chips + amountAdded3;
-				System.out.println(chipInventory + "chips");
-				System.out.println(Chips + "has been added to the inventory!");
-				System.out.println("There a total of" + Chips + "chips" );
+					
+					
+				case 4: // Admin state, change it to be 
+					Scanner adminInput = new Scanner(System.in);
+					
+					System.out.println("You're now in Admin state!");
+					
+					System.out.println("How many chocolates do you want to add to the inventory?");
+					try{
+						chocolate += adminInput.nextInt();
+						System.out.println(chocoInventory + "Chocolate");
+						System.out.println(chocolate + "has been added to the inventory!");
+						System.out.println("There a total of" + chocolate + "chocolates" );
+					}catch (Exception e){
+						System.out.println("Invaild");
+					}
+	
+					try{
+						System.out.println("How many poptarts do you want to add to the inventory?");
+						poptarts += adminInput.nextInt();
+						System.out.println(chocoInventory + "Poptarts");
+						System.out.println(poptarts + "has been added to the inventory!");
+						System.out.println("There a total of" + poptarts + "poptarts" );
+					}catch (Exception e){
+						System.out.println("Invaild");
+					}
+						
+					try{
+						System.out.println("How many chips do you want to add to the inventory?");
+						chips += adminInput.nextInt();
+						System.out.println(chipInventory + "chips");
+						System.out.println(chips + "has been added to the inventory!");
+						System.out.println("There a total of" + chips + "chips" );
+					} catch (Exception e){
+						System.out.println("Invaild");
+					}
 				
 //				if(input.equals("Waiting"))
 					state = 0;
@@ -119,10 +133,9 @@ public class VendingMachine {
 				
 			
 				
-			}
+			
+			} 
 		}
-		 
 	}
-}
 }
 
