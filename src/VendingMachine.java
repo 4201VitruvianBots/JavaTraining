@@ -5,19 +5,11 @@ public class VendingMachine {
 		
 		int state = 0;
 		double currentMoney = 0;
-		double itemCost1 = 10;
-		double itemCost2 = 100;
-		double itemCost3 = 0.50;
+		double itemCost1 = 10, itemCost2 = 100, itemCost3 = 0.50;
 		int itemSelection = 0;
-		int item1 = 100;
-		int item2 = 25;
-		int item3 = 1000;
-		int amountWanted1 = 0;
-		int amountWanted2 = 0;
-		int amountWanted3 = 0;
-		int amountAdded1 = 0;
-		int amountAdded2 = 0;
-		int amountAdded3 = 0;
+		int item1 = 100, item2 = 25, item3 = 1000;
+		int amountWanted1 = 0, amountWanted2 = 0, amountWanted3 = 0;
+		int amountAdded1 = 0, amountAdded2 = 0, amountAdded3 = 0;
 		double totalCost = 0;
 		int adminSetting = 1;
 		
@@ -96,28 +88,18 @@ public class VendingMachine {
 					if (currentMoney>=totalCost && item1>=amountWanted1){
 				 
 					
-						item1=item1-amountWanted1;
-						amountWanted1=0;
+						item1-=amountWanted1;
 						switch (amountWanted1){
 						//changes grammar
 						case 0:
-							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
-							break;
-						case 1:
-							System.out.println("Item dispensed, enjoy your figit spinner!");
-							currentMoney=currentMoney-totalCost;
-							state=0;	
-							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
-							currentMoney=0;
-					
 							break;
 						default:
-							System.out.println("Items dispensed, enjoy your figit spinners!");
+							System.out.println("Item"+(amountWanted1 > 1? "s" :"")+ " dispensed, enjoy your figit spinner"+(amountWanted1 > 1? "s" :"")+"!");
 							currentMoney=currentMoney-totalCost;
-							state=0;
+							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
 							break;
@@ -153,22 +135,12 @@ public class VendingMachine {
 						switch (amountWanted2){
 						//changes grammar
 						case 0:
-							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
 							break;
-						case 1:
-							System.out.println("Item dispensed, enjoy your drone!");
-							currentMoney=currentMoney-totalCost;
-							state=0;	
-							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
-							currentMoney=0;
-							break;
-							
-						
 						default:
-							System.out.println("Items dispensed, enjoy your drones!");
+							System.out.println("Item" +(amountWanted2 > 1? "s" :"")+ " dispensed, enjoy your drone" +(amountWanted2 > 1? "s" :"")+ "!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
@@ -206,27 +178,17 @@ public class VendingMachine {
 						switch (amountWanted3){
 						//changes grammar
 						case 0:
-							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
 							break;
-						case 1:
-							System.out.println("Item dispensed, enjoy your bouncy ball!");
-							currentMoney=currentMoney-totalCost;
-							state=0;	
-							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
-							currentMoney=0;
-							break;
-							
-						
 						default:
-								System.out.println("Items dispensed, enjoy your bouncy balls!");
+							System.out.println("Item" +(amountWanted1 > 1? "s" :"")+ " dispensed, enjoy your bouncy ball" +(amountWanted1 > 1? "s" :"")+ "!");
 							currentMoney=currentMoney-totalCost;
 							state=0;	
 							System.out.println("$" + String.format("%.2f", currentMoney) + " returned");
 							currentMoney=0;
-							break;
+							break;						
 							}
 					}
 					else if (item3>=amountWanted3){
@@ -338,7 +300,7 @@ public class VendingMachine {
 					System.out.println("There are now " + item3 + " bouncy balls.");
 					System.out.println("Admin mode deactivated.");
 					state = 0;
-					adminSetting = 0;
+					adminSetting = 1;
 				}
 				break;
 				}
