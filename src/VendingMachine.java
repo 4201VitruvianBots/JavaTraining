@@ -43,6 +43,9 @@ public class VendingMachine {
 				else if(input.equals("Sample")){
 					System.out.println("More supplies needed.");
 				}
+				else if(input.equals("David")){
+					System.out.println("More supplies needed.");
+				}
 				else {
 					try{
 						if (Double.valueOf(input) >= 0){
@@ -59,9 +62,10 @@ public class VendingMachine {
 					}
 				}
 				
-				if(currentMoney >= itemCost3)
+				if(currentMoney >= itemCost1 || currentMoney>=itemCost2 || currentMoney>=itemCost3){
 					//takes you to item selection
 					state = 1;
+				}
 				break;
 			case 1: //item selection state
 				
@@ -245,7 +249,7 @@ public class VendingMachine {
 						System.out.println(amountAdded1 + " fidget spinners added.");
 						System.out.println("There are now " + item1 + " fidget spinners");
 						}
-						else if (Math.abs(amountAdded1)>=item1){
+						else {
 							System.out.println("Invalid");
 							adminSetting = 1;
 							break;
@@ -304,7 +308,7 @@ public class VendingMachine {
 						state = 0;
 						adminSetting = 1;
 					}
-					else if (Math.abs(amountAdded2)>=item2){
+					else {
 						System.out.println("Invalid");
 						adminSetting = 3;
 						break;
