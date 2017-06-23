@@ -2,13 +2,17 @@ import java.util.Random;
 
 public class RandomNumbers {
 	public static void main(String[] args) {
+		final int N=10;
 		// Do not edit these values
 		double minValue = -10;
 		double maxValue = 10;
 		Random r = new Random();
 		double randomValue = 0;
 		
-		double[] unsortedArray = new double[10];
+		double[] unsortedArray = new double[N];
+		int[] integerArray = new int[N];
+		double[] sortedArray = new double[N];
+		
 		
 		// I haven't gone over for loops yet, but I will next week, just know that this loop is also equivalent to:
 		// while(i++ < 10), with int i = 0;
@@ -28,6 +32,14 @@ public class RandomNumbers {
 			}
 			// Example output format. The number [x] is an (odd/even?) (double/int?) that is (positive/negative?)
 			System.out.println(randomValue);
+		}
+		
+		int j=0;
+		for(int i=0; i<N; i++) {
+			double ai = unsortedArray[i];
+			if( ai == (int)ai ) {
+				integerArray[j++] = (int)ai;
+			}
 		}
 	}
 }
