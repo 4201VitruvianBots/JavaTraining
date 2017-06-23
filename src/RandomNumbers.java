@@ -8,6 +8,10 @@ public class RandomNumbers {
 		Random r = new Random();
 		double randomValue = 0;
 		
+		double[] sorted = new double[10];
+		final int N = 10;
+		int count = 0; 
+		
 		double[] unsortedArray = new double[10];
 		
 		// I haven't gone over for loops yet, but I will next week, just know that this loop is also equivalent to:
@@ -29,5 +33,22 @@ public class RandomNumbers {
 			// Example output format. The number [x] is an (odd/even?) (double/int?) that is (positive/negative?)
 			System.out.println(randomValue);
 		}
+		for(int i = 0 ; i < 9; i++){
+			sorted[i]=randomValue;
+			for(int j = 0; j < N - 1 - i; j++){
+				if(sorted[j] > sorted[j + 1]){
+					double temp = sorted[j + 1];
+					sorted[j + 1] = sorted[j];
+					sorted[j] = temp;
+	 			}
+			}
+		}
+		
+		
+		for(int i = 0; i < 10; i++)
+			System.out.print(unsortedArray[i] + "\t");
+		System.out.println();
+		for(int i = 0; i < 10; i++)
+			System.out.print(sorted[i] + "\t");
 	}
 }
