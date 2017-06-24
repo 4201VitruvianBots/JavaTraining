@@ -8,12 +8,22 @@ public class RandomNumbers {
 		Random r = new Random();
 		double randomValue = 0;
 		
-		double[] unsortedArray = new double[10];
+		
 		double[] odd = new double[10];
 		int oddIndex = 0;
 		double[] even = new double[10];
 		int evenIndex = 0;
-		double[] sorted = new double [10];
+		double[] positive = new double[10];
+		int positiveIndex = 0;
+		double[] negative = new double [10];
+		int negativeIndex = 0;
+		double[] ints = new double[10];
+		int intIndex = 0;
+		double[] doubles = new double[10];
+		int doubleIndex = 0;
+		
+		double[] unsortedArray = new double[10];
+		double[] sorted = new double[10];
 		
 		
 
@@ -27,7 +37,7 @@ public class RandomNumbers {
 			// To adjust it to get the minValue, we just add it, so the range then becomes -10 to 10
 			
 			// The reason I do this if else is to guarantee an int, otherwise, you'd be refreshing forever until you got an exact integer value
-			if(r.nextDouble() < 0.5){ // r.nextInt includes an argument so I can set the upper bound, with the lower bound being 0
+			if(r.nextDouble() < 0.4){ // r.nextInt includes an argument so I can set the upper bound, with the lower bound being 0
 				randomValue = minValue + (maxValue - minValue) * r.nextDouble();
 				unsortedArray[i] = randomValue;
 				
@@ -46,6 +56,8 @@ public class RandomNumbers {
 				System.out.println("This is an int");
 				evenIndex++;
 				even[evenIndex-1] = randomValue;
+				intIndex++;
+				ints[intIndex-1] = randomValue;
 			}
 			else if (Math.abs(randomValue)%2 == 1){
 				//checks if this is odd
@@ -53,20 +65,32 @@ public class RandomNumbers {
 				System.out.println("This is an int");
 				oddIndex++;
 				odd[oddIndex-1] = randomValue;
+				intIndex++;
+				ints[intIndex-1] = randomValue;
 			}
 			else {
 				System.out.println("This is neither even or odd");
 				System.out.println("This is a double");
-			}
+				//checks if this is a double
+				doubleIndex++;
+				doubles[doubleIndex-1] = randomValue;
+				}
 			if (randomValue>0){
-				System.out.println("This is positive.");	
+				System.out.println("This is positive.");
+				//checks if this is positive
+				positiveIndex++;
+				positive[positiveIndex-1] = randomValue;
 				
 			}
 			else if (randomValue<0){
+				//checks if this is negative
 				System.out.println("This is negative.");
+				negativeIndex++;
+				negative[negativeIndex-1] = randomValue;
 			}
 			else {
-				System.out.println("This is neither posotive or negative");
+				//checks if this is zero
+				System.out.println("This is neither positive or negative");
 			}
 			
 			
@@ -78,8 +102,9 @@ public class RandomNumbers {
 	        
         for(int i = 0; i < 10; i++)
             sorted[i] = unsortedArray[i];
+        //gets ready to sort
         
-        for(int l = 0 ; l < 9; l++){
+        for(int l = 0 ; l < 9; l++){ //sorting
             for(int j = 0; j < N - 1 - l; j++){
                 if(sorted[j] > sorted[j + 1]){
                     double temp = sorted[j + 1];
@@ -93,32 +118,220 @@ public class RandomNumbers {
         
         for(int m = 0; m < 10; m++){
         	
-            System.out.print(unsortedArray[m] + "\t");
+            System.out.print(unsortedArray[m] + "\t"); //displays unsorted array
             
         }
         
         System.out.println( );
         
         for(int n = 0; n < 10; n++){
-            System.out.print(sorted[n] + "\t");	                      
+            System.out.print(sorted[n] + "\t");	            //displays sorted array           
         }
         
         System.out.println();
         System.out.println();
-        System.out.println("odd values");
+        System.out.println();
+        System.out.println("odd values: " + oddIndex);
        
         for(int o = 0; o < oddIndex; ){
         	
-        	System.out.print(odd[o] + "\t");
+        	System.out.print(odd[o] + "\t"); // displays odd values
+        	o++;
+        	
+        }
+        for(int i = 0; i < oddIndex; i++)
+            sorted[i] = odd[i]; //gets ready to sort odd values
+        
+        for(int l = 0 ; l < oddIndex; l++){ //sorts odd values
+            for(int j = 0; j < oddIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < oddIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted odd values
         	o++;
         	
         }
         System.out.println();
-        System.out.println("even values");
+        System.out.println();
+        System.out.println("even values: " + evenIndex);
         
         for(int p = 0; p < evenIndex; p++){
         	
-        	System.out.print(even[p] + "\t");
+        	System.out.print(even[p] + "\t"); //displays even value
+        	
+        }
+        for(int i = 0; i < evenIndex; i++)
+            sorted[i] = even[i]; // gets ready to sort even values
+        
+        for(int l = 0 ; l < evenIndex; l++){ // sorts even values
+            for(int j = 0; j < evenIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < evenIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted even values
+        	o++;
+        	
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("neither odd or even: " + doubleIndex);
+        
+        for(int p = 0; p < doubleIndex; p++){
+        	
+        	System.out.print(doubles[p] + "\t"); //displays doubles
+        	
+        }
+        for(int i = 0; i < doubleIndex; i++)
+            sorted[i] = doubles[i]; //gets ready to sort doubles
+        
+        for(int l = 0 ; l < doubleIndex; l++){//sorts doubles
+            for(int j = 0; j < doubleIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < doubleIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted doubles
+        	o++;
+        	
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("positive values: " + positiveIndex);
+        
+        for(int p = 0; p < positiveIndex; p++){
+        	
+        	System.out.print(positive[p] + "\t"); //displays positive values
+        	
+        }
+        for(int i = 0; i < positiveIndex; i++)
+            sorted[i] = positive[i]; //gets ready to sort positive values
+        
+        for(int l = 0 ; l < positiveIndex; l++){ //sorts positive values
+            for(int j = 0; j < positiveIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < positiveIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted positive values
+        	o++;
+        	
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("negative values: " + negativeIndex);
+        
+        for(int p = 0; p < negativeIndex; p++){
+        	
+        	System.out.print(negative[p] + "\t"); //displays negative values
+        	
+        }
+        for(int i = 0; i < negativeIndex; i++)
+            sorted[i] = negative[i]; //gets ready to sort negative values
+        
+        for(int l = 0 ; l < negativeIndex; l++){ //sorts negative values
+            for(int j = 0; j < negativeIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < negativeIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted negative valuse
+        	o++;
+        	
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("zeros: " + (10-positiveIndex-negativeIndex));
+        for (int i = 0; i < 10 - positiveIndex - negativeIndex; i++){
+        	System.out.println("0"); //counts zeros
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("ints: " + intIndex);
+        
+        for(int p = 0; p < intIndex; p++){
+        	
+        	System.out.print(ints[p] + "\t"); //displays ints
+        	
+        }
+        for(int i = 0; i < intIndex; i++)
+            sorted[i] = ints[i]; //gets ready to sort ints
+        
+        for(int l = 0 ; l < intIndex; l++){ //sorts ints
+            for(int j = 0; j < intIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < intIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted ints
+        	o++;
+        	
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println("doubles: " + doubleIndex);
+        
+        for(int p = 0; p < doubleIndex; p++){
+        	
+        	System.out.print(doubles[p] + "\t"); //displays doubles
+        	
+        }
+        for(int i = 0; i < doubleIndex; i++)
+            sorted[i] = doubles[i]; //gets ready to sort doubles
+        
+        for(int l = 0 ; l < doubleIndex; l++){ //sort doubles
+            for(int j = 0; j < doubleIndex - 1 - l; j++){
+                if(sorted[j] > sorted[j + 1]){
+                    double temp = sorted[j + 1];
+                    sorted[j + 1] = sorted[j];
+                    sorted[j] = temp;
+                 }
+            }
+        }
+        System.out.println();
+        for(int o = 0; o < doubleIndex; ){
+        	
+        	System.out.print(sorted[o] + "\t"); //displays sorted doubles
+        	o++;
         	
         }
         
