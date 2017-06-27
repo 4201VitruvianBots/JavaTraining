@@ -43,6 +43,12 @@ public class VendingMachine {
 				else if(input.equals("Sample")){
 					System.out.println("More supplies needed.");
 				}
+				else if(input.equals("Reset")){
+					System.out.println("Supplies reset.");
+					item1 = 100;
+					item2 = 25;
+					item3 = 1000;
+				}
 				else if(input.equals("Add")){
 					item1+=100;
 					item2+=100;
