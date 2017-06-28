@@ -13,10 +13,10 @@ public class RandomNumbers {
 		
 		int count = 0;
 		
+		int inputCount = 0;
 		
 		
-		final int N = 100000; //Number's sorted (Keep it small please.)
-		
+		final int N = 100; //Number's sorted (Keep it small please.)
 		
 		
 		
@@ -59,12 +59,13 @@ public class RandomNumbers {
 				unsortedArray[i] = randomValue;
 				
 			}
-			else if(r.nextDouble()<=0.0){
+			else if(r.nextDouble()<=0.1){
 				System.out.println("Input number");
 				Scanner randomValueInput = new Scanner(System.in);
 				String randomValueString = randomValueInput.next();				
 				try{
 				randomValue = (Double.valueOf(randomValueString));
+				inputCount++;
 				} catch(Exception e){
 					System.out.println("Error");
 				}
@@ -366,5 +367,6 @@ public class RandomNumbers {
         System.out.println();
         System.out.println();
         System.out.println("Number of times sorted: " + count);
+        System.out.println("Input count: " + inputCount);
        }
 }
