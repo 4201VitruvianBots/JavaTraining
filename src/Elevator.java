@@ -19,79 +19,83 @@ public class Elevator {
 			System.out.println("Enter a destination: ");
 			
 			
-			Button = input.nextDouble(); // reads the input and set it as the destination
-			
+			String Buttons = input.next(); // reads the input and set it as the destination
+			try{
+				Button = Double.valueOf(Buttons);
+			}catch (Exception e){
+				System.out.println("Error");
+			}
 			
 			if (Button == currentLocation){
 			System.out.println("you are already there.")	;
 			}
 			
 			
-			else if (Button == 1 || Button == 2 || Button == 3 || Button == 4 || Button == 5 || Button == 6 || Button == 7 || Button == 8 || Button == 9 || Button == 10){
+			else if (Button%2 == 0 || Button%2 == 1) {
+					
+				switch ((int)Button){
+				case 1:
+					destination = 1;
+					break;
+				case 2:
+					destination = 2;
+					break;
+				case 3:
+					destination = 3;
+					break;
+				case 4:
+					destination = 4;
+					break;
+				case 5:
+					destination = 5;
+					break;
+				case 6:
+					destination = 6;
+					break;
+				case 7:
+					destination = 7;
+					break;
+				case 8:
+					destination = 8;
+					break;
+				case 9:
+					destination = 9;
+					break;
+				case 10:
+					destination = 10;
+					break;
+					
+				default:
+					System.out.println("That floor does not exist");
+					break;
+				}
+				System.out.println("Your destination is " + destination);
+				System.out.println("Your current location is " + currentLocation);
+				while(currentLocation != destination && Button < 11 && Button >0){
+					// Begin writing your code here:
+					
+					if (currentLocation<destination){
+					currentLocation++;
+					}
+					else {
+					currentLocation--	;
+					}
+					
+					System.out.println("The elevator moved to floor " + currentLocation);
 				
-			switch ((int)Button){
-			case 1:
-				destination = 1;
-				break;
-			case 2:
-				destination = 2;
-				break;
-			case 3:
-				destination = 3;
-				break;
-			case 4:
-				destination = 4;
-				break;
-			case 5:
-				destination = 5;
-				break;
-			case 6:
-				destination = 6;
-				break;
-			case 7:
-				destination = 7;
-				break;
-			case 8:
-				destination = 8;
-				break;
-			case 9:
-				destination = 9;
-				break;
-			case 10:
-				destination = 10;
-				break;
-				
-			default:
-				System.out.println("That floor does not exist");
-				break;
-			}
-		System.out.println("Your destination is " + destination);
-		System.out.println("Your current location is " + currentLocation);
-		while(currentLocation != destination && Button < 11){
-			// Begin writing your code here:
-			
-			if (currentLocation<destination){
-			currentLocation++;
+				}
+				if (currentLocation == destination && Button < 11){
+				currentLocation = destination;
+				System.out.println("You have arrived at your destination.");
+				}				
+						
 			}
 			else {
-			currentLocation--	;
+				System.out.println("That floor does not exist.");
 			}
-			
-			
-			
-
-
-			System.out.println("The elevator moved to floor " + currentLocation);
-		
-		}
-			if (currentLocation == destination && Button < 11){
-			currentLocation = destination;
-			System.out.println("You have arrived at your destination.");
-			}
-					
-				}
 			
 		}
 		
 	}
+	
 }
