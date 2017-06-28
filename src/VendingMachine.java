@@ -12,6 +12,8 @@ public class VendingMachine {
 		int amountAdded1 = 0, amountAdded2 = 0, amountAdded3 = 0; //lets you add in Admin mode
 		double totalCost = 0; //total cost of purchase
 		int adminSetting = 1; //sets location in Admin mode
+		double totalMoney = 0;
+		int moneyOutput = 0;
 		
 		while(true){
 			switch(state){
@@ -122,7 +124,7 @@ public class VendingMachine {
 					totalCost=itemCost1*amountWanted1; 
 					if (currentMoney>=totalCost && item1>=amountWanted1){
 				 
-					
+						totalMoney = totalCost;
 						item1-=amountWanted1;
 						switch (amountWanted1){
 						//changes grammar
@@ -166,6 +168,7 @@ public class VendingMachine {
 					totalCost=itemCost2*amountWanted2;
 					if (currentMoney>=totalCost && item2>=amountWanted2){			
 						item2=item2-amountWanted2;
+						totalMoney = totalCost;
 						
 						switch (amountWanted2){
 						//changes grammar
@@ -210,6 +213,7 @@ public class VendingMachine {
 					totalCost=itemCost3*amountWanted3;
 					if (currentMoney>=totalCost && item3>=amountWanted3){
 						item3=item3-amountWanted3;
+						totalMoney = totalCost;
 						switch (amountWanted3){
 						//changes grammar
 						case 0:
@@ -337,11 +341,26 @@ public class VendingMachine {
 					item3+=amountAdded3;
 					System.out.println(amountAdded3 + " bouncy balls added.");
 					System.out.println("There are now " + item3 + " bouncy balls.");
+					state = 0;
+				}
+				case 4:
+					System.out.println("There is $" + String.format("%.2f", (totalMoney)));
+					System.out.println("How much money would you like to withdraw?");
+					Scanner takeOutMoney = new Scanner(System.in);
+					try{moneyOutput = takeOutMoney.nextInt();
+					}catch(Exception e){
+						System.out.println("Invalid");
+						adminSetting = 4;
+						break;
+					}
+					if (totalMoney >= moneyOutput){
+						totalMoney -= moneyOutput;
+					}
+					adminSetting = 1;
+					System.out.println("There is now $" + String.format("%.2f", (totalMoney)));
 					System.out.println("Admin mode deactivated.");
 					state = 0;
-					adminSetting = 1;
-				}
-				break;
+					break;
 				}
 			}
 		}		
