@@ -10,9 +10,16 @@ public class RandomNumbers {
 		
 		double[] sorted = new double[10];
 		final int N = 10;
-		int count = 0; 
+		int count = 0; 	
+		int positiveIndex = 0;
+		int negativeIndex = 0;
+		int evenIndex = 0;
+		int oddIndex = 0;
 		
+		
+		double[] negative = new double [10];
 		double[] unsortedArray = new double[10];
+		double[] positive = new double[10];
 		
 		// I haven't gone over for loops yet, but I will next week, just know that this loop is also equivalent to:
 		// while(i++ < 10), with int i = 0;
@@ -48,7 +55,22 @@ public class RandomNumbers {
 		for(int i = 0; i < 10; i++)
 			System.out.print(unsortedArray[i] + "\t");
 		System.out.println();
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < 10; i++){
 			System.out.print(sorted[i] + "\t");
+			if(sorted[i] < 0){
+				negative[negativeIndex] = sorted[i];
+				negativeIndex++;
+				System.out.println("This is negative");
+			}
+			else if(sorted[i]> 0){
+				positive[positiveIndex] = sorted[i];
+				positiveIndex++;
+				System.out.println("This is positive");
+			}
+			else if(sorted[i] = double){
+				
+			}
+		}
 	}
-}
+}	
+
