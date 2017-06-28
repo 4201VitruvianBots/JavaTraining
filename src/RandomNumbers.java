@@ -10,8 +10,29 @@ public class RandomNumbers {
 		
 		double[] unsortedArray = new double[10];
 		
+		
+		double[] evenArray = new double[10];
+		int even = 0;
+		
+		double[] oddArray = new double[10];
+		int odd= 0;
+		
+		double[] posArray = new double[10];
+		int pos = 0;
+		
+		double[] negArray = new double[10];
+		int neg = 0;
+		
+		double[] intArray = new double[10];
+		int x = 0;
+		
+		double[] doubleArray = new double[10];
+		int dob = 0;
+		
+		
 		// I haven't gone over for loops yet, but I will next week, just know that this loop is also equivalent to:
 		// while(i++ < 10), with int i = 0;
+		
 		for(int i = 0; i < 10; i++){
 			// r.nextDouble generates a random double between 0 and 1. 
 			// To adjust this to get values from -10 to 10, we first multiply it by the range (20), which equals maxValue - minValue, which changes the range from 0 to 20
@@ -27,7 +48,23 @@ public class RandomNumbers {
 				unsortedArray[i] = randomValue;
 			}
 			// Example output format. The number [x] is an (odd/even?) (double/int?) that is (positive/negative?)
-			System.out.println(randomValue);
+			//System.out.println(randomValue);
+			
+			if(randomValue % 2 == 0){
+				evenArray[i] = randomValue;
+			}
+			else{
+				oddArray[i] = randomValue;
+			}
+			
+			if(randomValue <0 ){
+				negArray[i] = randomValue;
+			}
+			else{
+				posArray[i] = randomValue;
+			}
+			System.out.println("The odd values are: " + oddArray);
+			System.out.println("The even values are: " + evenArray);
 		}
 	}
 }
