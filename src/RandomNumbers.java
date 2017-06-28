@@ -16,7 +16,7 @@ public class RandomNumbers {
 		int inputCount = 0;
 		
 		
-		final int N = 100; //Number's sorted (Keep it small please.)
+		final int N = 10; //Number's sorted (Keep it small please.)
 		
 		
 		
@@ -59,7 +59,7 @@ public class RandomNumbers {
 				unsortedArray[i] = randomValue;
 				
 			}
-			else if(r.nextDouble()<=0.1){
+			else if(r.nextDouble()<=0.0){
 				System.out.println("Input number");
 				Scanner randomValueInput = new Scanner(System.in);
 				String randomValueString = randomValueInput.next();				
@@ -72,7 +72,7 @@ public class RandomNumbers {
 			}
 			
 			else{
-				randomValue = r.nextInt((int)maxValue - (int)minValue) + minValue; // The min/max is casted here because the .nextInt() function only accepts integer values
+				randomValue = r.nextInt((int)maxValue - (int)minValue + 1) + minValue; // The min/max is casted here because the .nextInt() function only accepts integer values
 				unsortedArray[i] = randomValue;
 				
 			}
