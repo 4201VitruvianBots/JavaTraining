@@ -38,7 +38,6 @@ public class VendingMachine {
 					item1 --;
 					item2 --;
 					item3 --;
-					state = 0;
 				}
 				else if(input.equals("Sample")){
 					System.out.println("More supplies needed.");
@@ -53,6 +52,9 @@ public class VendingMachine {
 					item1+=100;
 					item2+=100;
 					item3+=100;
+				}
+				else if(input.equals("Hi")){
+					System.out.println("HI");
 				}
 				else if(input.equals("David")){
 					//dispense everything
