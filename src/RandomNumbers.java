@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomNumbers {
@@ -31,15 +33,82 @@ public class RandomNumbers {
 				unsortedArray[i] = randomValue;
 			}
 			// Example output format. The number [x] is an (odd/even?) (double/int?) that is (positive/negative?)
-			System.out.println(randomValue);
+			System.out.println(i + ": value=" + randomValue);
 		}
+		System.out.println("SORTED RANDOM ARRAY");
+		List<Double> randList = createList(unsortedArray);
+		randList.sort(null);
+		printList(randList);
 		
-		int j=0;
+		// create new array of the random numbers which are integral 
+		List<Integer> iList = new ArrayList<Integer>();
+		int j=0, intSize=0;
 		for(int i=0; i<N; i++) {
 			double ai = unsortedArray[i];
 			if( ai == (int)ai ) {
 				integerArray[j++] = (int)ai;
+				intSize=j;
+				iList.add((int)ai);
 			}
+		}	
+		System.out.println("SORT ARRAY OF " + intSize + " INTEGERS");		
+		iList.sort(null);
+		printIntList(iList);
+		
+		ArrayList<Integer>  negativeList = new ArrayList<Integer>();
+		ArrayList<Integer>  positiveList = new ArrayList<Integer>();
+		ArrayList<Integer>  evenList = new ArrayList<Integer>();
+		ArrayList<Integer>  oddList = new ArrayList<Integer>();
+
+		for(int i=0; i<iList.size(); i++) {
+			int n = iList.get(i);
+			if( n < 0 ) 
+				negativeList.add(n);
+			else positiveList.add(n);
+			if( n % 2 == 0 ) 
+				evenList.add(n);
+			else oddList.add(n);
+		}
+		
+		negativeList.sort(null);
+		positiveList.sort(null);
+		evenList.sort(null);
+		oddList.sort(null);
+		System.out.println("NEGATIVE INTEGER LIST SIZE=" + negativeList.size());
+		printIntList(negativeList);
+		System.out.println("POSITIVE INTEGER LIST SIZE=" + positiveList.size());
+		printIntList(positiveList);
+		System.out.println("EVEN INTEGER LIST SIZE=" + evenList.size());
+		printIntList(evenList);
+		System.out.println("ODD INTEGER LIST SIZE=" + oddList.size());
+		printIntList(oddList);
+
+	}
+	
+	private static List<Integer> createList(int[] ints) {
+		List<Integer> outList = new ArrayList<Integer>();
+		for (int index = 0; index < ints.length; index++)
+		{
+		    outList.add(ints[index]);
+		}
+		return outList;
+	}
+	private static List<Double> createList(double[] array) {
+		List<Double> outList = new ArrayList<Double>();
+		for (int index = 0; index < array.length; index++)
+		{
+		    outList.add(array[index]);
+		}
+		return outList;
+	}
+	private static void printIntList(List<Integer> list) {
+		for( int i=0; i < list.size(); i++ ) {
+			System.out.println(list.get(i));
+		}
+	}
+	private static void printList(List<Double> list) {
+		for( int i=0; i < list.size(); i++ ) {
+			System.out.println(list.get(i));
 		}
 	}
 }
