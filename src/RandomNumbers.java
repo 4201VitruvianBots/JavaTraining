@@ -1,37 +1,54 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class RandomNumbers {
 	public static void main(String[] args) {
 		// Do not edit these values
 		double minValue = -10;
 		double maxValue = 10;
+		
 		Random r = new Random();
+		
 		double randomValue = 0;
 		
+		int count = 0;
 		
-		double[] odd = new double[10];
+		
+		
+		final int N = 100000; //Number's sorted (Keep it small please.)
+		
+		
+		
+		
+		double[] odd = new double[N];
 		int oddIndex = 0;
-		double[] even = new double[10];
+		
+		double[] even = new double[N];
 		int evenIndex = 0;
-		double[] positive = new double[10];
+		
+		double[] positive = new double[N];
 		int positiveIndex = 0;
-		double[] negative = new double [10];
+		
+		double[] negative = new double [N];
 		int negativeIndex = 0;
-		double[] ints = new double[10];
+		
+		double[] ints = new double[N];
 		int intIndex = 0;
-		double[] doubles = new double[10];
+		
+		double[] doubles = new double[N];
 		int doubleIndex = 0;
 		
-		double[] unsortedArray = new double[10];
-		double[] sorted = new double[10];
+		
+		
+		double[] unsortedArray = new double[N];
+		double[] sorted = new double[N];
 		
 		
 
-        final int N = 10;
         
 		// I haven't gone over for loops yet, but I will next week, just know that this loop is also equivalent to:
 		// while(i++ < 10), with int i = 0;
-		for(int i = 0; i < 10;){
+		for(int i = 0; i < N;){
 			// r.nextDouble generates a random double between 0 and 1. 
 			// To adjust this to get values from -10 to 10, we first multiply it by the range (20), which equals maxValue - minValue, which changes the range from 0 to 20
 			// To adjust it to get the minValue, we just add it, so the range then becomes -10 to 10
@@ -42,6 +59,17 @@ public class RandomNumbers {
 				unsortedArray[i] = randomValue;
 				
 			}
+			else if(r.nextDouble()<=0.0){
+				System.out.println("Input number");
+				Scanner randomValueInput = new Scanner(System.in);
+				String randomValueString = randomValueInput.next();				
+				try{
+				randomValue = (Double.valueOf(randomValueString));
+				} catch(Exception e){
+					System.out.println("Error");
+				}
+			}
+			
 			else{
 				randomValue = r.nextInt((int)maxValue - (int)minValue) + minValue; // The min/max is casted here because the .nextInt() function only accepts integer values
 				unsortedArray[i] = randomValue;
@@ -100,23 +128,24 @@ public class RandomNumbers {
 			i++;
 		}
 	        
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < N; i++)
             sorted[i] = unsortedArray[i];
         //gets ready to sort
         
-        for(int i = 0 ; i < 9; i++){ //sorting
+        for(int i = 0 ; i < N-1; i++){ //sorting
             for(int j = 0; j < N - 1 - i; j++){
                 if(sorted[j] > sorted[j + 1]){
                     double temp = sorted[j + 1];
                     sorted[j + 1] = sorted[j];
                     sorted[j] = temp;
                  }
+                count++;
             }
         }
         
         System.out.println( );
         
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < N; i++){
         	
             System.out.print(unsortedArray[i] + "\t"); //displays unsorted array
             
@@ -124,7 +153,7 @@ public class RandomNumbers {
         
         System.out.println( );
         
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < N; i++){
             System.out.print(sorted[i] + "\t");	            //displays sorted array           
         }
         
@@ -273,8 +302,8 @@ public class RandomNumbers {
         }
         System.out.println();
         System.out.println();
-        System.out.println("zeros: " + (10-positiveIndex-negativeIndex));
-        for (int i = 0; i < 10 - positiveIndex - negativeIndex; i++){
+        System.out.println("zeros: " + (N-positiveIndex-negativeIndex));
+        for (int i = 0; i < N - positiveIndex - negativeIndex; i++){
         	System.out.println("0.00"); //counts zeros
         }
         System.out.println();
@@ -334,7 +363,8 @@ public class RandomNumbers {
         	i++;
         	
         }
-        
-	}
-
+        System.out.println();
+        System.out.println();
+        System.out.println("Number of times sorted: " + count);
+       }
 }
