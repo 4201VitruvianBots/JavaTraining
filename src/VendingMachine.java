@@ -124,7 +124,7 @@ public class VendingMachine {
 					totalCost=itemCost1*amountWanted1; 
 					if (currentMoney>=totalCost && item1>=amountWanted1){
 				 
-						totalMoney = totalCost;
+						totalMoney = totalMoney + totalCost;
 						item1-=amountWanted1;
 						switch (amountWanted1){
 						//changes grammar
@@ -168,7 +168,7 @@ public class VendingMachine {
 					totalCost=itemCost2*amountWanted2;
 					if (currentMoney>=totalCost && item2>=amountWanted2){			
 						item2=item2-amountWanted2;
-						totalMoney = totalCost;
+						totalMoney = totalMoney + totalCost;
 						
 						switch (amountWanted2){
 						//changes grammar
@@ -213,7 +213,7 @@ public class VendingMachine {
 					totalCost=itemCost3*amountWanted3;
 					if (currentMoney>=totalCost && item3>=amountWanted3){
 						item3=item3-amountWanted3;
-						totalMoney = totalCost;
+						totalMoney = totalMoney + totalCost;
 						switch (amountWanted3){
 						//changes grammar
 						case 0:
